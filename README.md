@@ -144,7 +144,7 @@ nubestore-backend/
     │   ├── model/         Cliente, Vendedor, Producto, Pedido, DetallePedido, Devolucion
     │   ├── service/       ClienteService, PedidoService, ProductoService
     │   └── util/          ConexionBD, PasswordUtil, Validador
-    └── resources/         application.properties, schema.sql
+    └── resources/         application.properties, data.sql, schema.sql
 ```
 
 ### Arquitectura, Patrones y Principios SOLID
