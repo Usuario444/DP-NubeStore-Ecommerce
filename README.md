@@ -130,21 +130,22 @@ nubestore-backend/
 ├── pom.xml
 └── src/main/
     ├── java/com/utp/nubestore/
-    │   ├── NubeStoreApplication.java
+    │   ├── NubestoreApplication.java
     │   ├── config/        CorsConfig
     │   ├── controller/    AuthController, ClienteController, PedidoController, ProductoController
     │   ├── dao/           ClienteDAO, PedidoDAO, ProductoDAO (interfaces)
     │   │   ├── factory/   DAOFactory
     │   │   └── impl/      BaseDAO, ClienteDAOImpl, PedidoDAOImpl, ProductoDAOImpl
     │   ├── dto/
-    │   │   ├── request/   RegistroCliente, Login, PublicarProducto, FiltroProducto,
-    │   │   │              ItemPedido, CrearPedido, SolicitarDevolucion
-    │   │   └── response/  Cliente, Auth, Producto, DetallePedido, Pedido, Devolucion, Error
+    │   │   ├── request/   CrearPedidoRequest, FiltroProductoRequest, ItemPedidoRequest, LoginRequest, PublicarProductoRequest, RegistroClienteRequest, SolicitarDevolucionRequest
+    │   │   └── response/  AuthResponse, ClienteResponse, DetallePedidoResponse, DevolucionResponse, ErrorResponse, PedidoResponse, ProductoResponse
     │   ├── exception/     ApiException, GlobalExceptionHandler
-    │   ├── model/         Cliente, Vendedor, Producto, Pedido, DetallePedido, Devolucion
+    │   ├── model/         Cliente, DetallePedido, Devolucion, Pedido, Producto, Usuario, Vendedor
     │   ├── service/       ClienteService, PedidoService, ProductoService
     │   └── util/          ConexionBD, PasswordUtil, Validador
-    └── resources/         application.properties, data.sql, schema.sql
+    └── resources/
+        ├── application.properties
+        └── db/            data.sql, schema.sql
 ```
 
 ### Arquitectura, Patrones y Principios SOLID
