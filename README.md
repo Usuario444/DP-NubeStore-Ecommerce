@@ -28,7 +28,7 @@ API REST de e-commerce. Java 21 · Spring Boot 4.1.1 (spring-boot-starter-web) �
 psql -U postgres -c "CREATE DATABASE nubestore WITH ENCODING 'UTF8';"
 
 # 2. Crear tablas y datos semilla (¡el script ejecuta DROP TABLE de las tablas existentes!)
-psql -U postgres -d nubestore -f src/main/resources/schema.sql
+psql -U postgres -d nubestore -f src/main/resources/db/schema.sql
 
 # 3. Levantar la API (http://localhost:8080)
 mvn spring-boot:run
