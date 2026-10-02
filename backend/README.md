@@ -1,4 +1,4 @@
-# NubeStore API — Backend (Avance 1)
+# NubeStore API — Backend 
 
 API REST de e-commerce. Java 21 · Spring Boot 4.1.1 (spring-boot-starter-web) · PostgreSQL · JDBC puro · Maven.
 ## Características base
