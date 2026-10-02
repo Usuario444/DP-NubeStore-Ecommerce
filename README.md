@@ -51,7 +51,7 @@ Este repositorio está estructurado como un **Monorepo**, dividiendo claramente 
 - **Lógica de Base de Datos:** Uso avanzado de `CHECK`, `UNIQUE` y columnas autogeneradas en PostgreSQL.
 - **Patrones de Diseño:** Implementación estricta de SOLID, Singleton, Factory y GRASP.
 
-### 💅 Frontend
+### ✨ Frontend
 - **Diseño a Medida:** Estética premium "estilo editorial" inspirada en grandes marcas.
 - **Responsive Nativo:** Layout adaptable mediante *Media Queries*, sin clases prefabricadas.
 - **Modo Oscuro:** Tema dinámico persistente gestionado por variables CSS nativas.
