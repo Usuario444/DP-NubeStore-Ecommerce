@@ -43,7 +43,7 @@ mvn spring-boot:run
 | `nubestore.db.url` | `NUBESTORE_DB_URL` | `jdbc:postgresql://localhost:5432/nubestore` |
 | `nubestore.db.username` | `NUBESTORE_DB_USER` | `postgres` |
 | `nubestore.db.password` | `NUBESTORE_DB_PASSWORD` | `postgres` |
-| `nubestore.cors.allowed-origins` | — | `localhost:3000, 5173, 4200` |
+| `nubestore.cors.allowed-origins` | — | `http://localhost:63342, http://127.0.0.1:63342` |
 
 ## Cuentas semilla
 

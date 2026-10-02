@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.utp</groupId>
-    <artifactId>nubestore</artifactId>
+    <artifactId>nubestore-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>nubestore</name>
     <description>API REST de NubeStore - Avance 1 (JDBC puro, sin ORM)</description>
