@@ -137,24 +137,90 @@ Formato único (`ErrorResponse`):
 ```text
 nubestore-backend/
 ├── pom.xml
-└── src/main/
-    ├── java/com/utp/nubestore/
-    │   ├── NubestoreApplication.java
-    │   ├── config/        CorsConfig
-    │   ├── controller/    AuthController, ClienteController, PedidoController, ProductoController
-    │   ├── dao/           ClienteDAO, PedidoDAO, ProductoDAO (interfaces)
-    │   │   ├── factory/   DAOFactory
-    │   │   └── impl/      BaseDAO, ClienteDAOImpl, PedidoDAOImpl, ProductoDAOImpl
-    │   ├── dto/
-    │   │   ├── request/   CrearPedidoRequest, FiltroProductoRequest, ItemPedidoRequest, LoginRequest, PublicarProductoRequest, RegistroClienteRequest, SolicitarDevolucionRequest
-    │   │   └── response/  AuthResponse, ClienteResponse, DetallePedidoResponse, DevolucionResponse, ErrorResponse, PedidoResponse, ProductoResponse
-    │   ├── exception/     ApiException, GlobalExceptionHandler
-    │   ├── model/         Cliente, DetallePedido, Devolucion, Pedido, Producto, Usuario, Vendedor
-    │   ├── service/       ClienteService, PedidoService, ProductoService
-    │   └── util/          ConexionBD, PasswordUtil, Validador
-    └── resources/
-        ├── application.properties
-        └── db/            data.sql, schema.sql
+└── src/
+    ├── main/
+    │   ├── java/com/utp/nubestore/
+    │   │   │   NubestoreApplication.java
+    │   │   │
+    │   │   ├── config/
+    │   │   │       CorsConfig.java
+    │   │   │
+    │   │   ├── controller/
+    │   │   │       AuthController.java
+    │   │   │       ClienteController.java
+    │   │   │       PedidoController.java
+    │   │   │       ProductoController.java
+    │   │   │
+    │   │   ├── dao/
+    │   │   │   │   ClienteDAO.java
+    │   │   │   │   PedidoDAO.java
+    │   │   │   │   ProductoDAO.java
+    │   │   │   │   VendedorDAO.java
+    │   │   │   │
+    │   │   │   ├── factory/
+    │   │   │   │       DAOFactory.java
+    │   │   │   │
+    │   │   │   └── impl/
+    │   │   │           BaseDAO.java
+    │   │   │           ClienteDAOImpl.java
+    │   │   │           PedidoDAOImpl.java
+    │   │   │           ProductoDAOImpl.java
+    │   │   │           VendedorDAOImpl.java
+    │   │   │
+    │   │   ├── dto/
+    │   │   │   ├── request/
+    │   │   │   │       CrearPedidoRequest.java
+    │   │   │   │       FiltroProductoRequest.java
+    │   │   │   │       ItemPedidoRequest.java
+    │   │   │   │       LoginRequest.java
+    │   │   │   │       PublicarProductoRequest.java
+    │   │   │   │       RegistroClienteRequest.java
+    │   │   │   │       SolicitarDevolucionRequest.java
+    │   │   │   │
+    │   │   │   └── response/
+    │   │   │           AuthResponse.java
+    │   │   │           AuthVendedorResponse.java
+    │   │   │           ClienteResponse.java
+    │   │   │           DetallePedidoResponse.java
+    │   │   │           DevolucionResponse.java
+    │   │   │           ErrorResponse.java
+    │   │   │           PedidoResponse.java
+    │   │   │           ProductoResponse.java
+    │   │   │           VendedorResponse.java
+    │   │   │
+    │   │   ├── exception/
+    │   │   │       ApiException.java
+    │   │   │       GlobalExceptionHandler.java
+    │   │   │
+    │   │   ├── model/
+    │   │   │       Cliente.java
+    │   │   │       DetallePedido.java
+    │   │   │       Devolucion.java
+    │   │   │       Pedido.java
+    │   │   │       Producto.java
+    │   │   │       Usuario.java
+    │   │   │       Vendedor.java
+    │   │   │
+    │   │   ├── service/
+    │   │   │       ClienteService.java
+    │   │   │       PedidoService.java
+    │   │   │       ProductoService.java
+    │   │   │       VendedorService.java
+    │   │   │
+    │   │   └── util/
+    │   │           ConexionBD.java
+    │   │           PasswordUtil.java
+    │   │           Validador.java
+    │   │
+    │   └── resources/
+    │       │   application.properties
+    │       │
+    │       ├── db/
+    │       │       data.sql
+    │       │       schema.sql
+    │       │
+    │       ├── static/
+    │       └── templates/
 ```
 
 ### 🏗️ Arquitectura, Patrones y Principios SOLID
