@@ -51,7 +51,7 @@ mvn spring-boot:run
 
 | Entidad | Datos |
 |---|---|
-| Vendedor `id=1` | `TechNube Store` · `ventas@technube.pe` · hash ficticio (no permite login; el vendedor no inicia sesión en el Avance 1) |
+| Vendedor `id=1` | `TechNube Store` · `ventas@technube.pe` · hash BCrypt real (Permite login en panel administrativo) |
 | Productos `id=1..4` | Laptop Lenovo IdeaPad 3 (S/ 2499.90), Mouse Logitech (59.90), Audífonos JBL (189.00), Teclado Redragon (149.50) |
 | Clientes | Ninguno. Se crean con `POST /api/auth/registro` (contraseña mínima: 8 caracteres) |
 
@@ -61,6 +61,7 @@ mvn spring-boot:run
 |---|---|---|---|---|
 | POST | `/api/auth/registro` | Cliente | Registra un cliente | 201 |
 | POST | `/api/auth/login` | Cliente | Valida credenciales | 200 |
+| POST | `/api/auth/admin/login` | Administrador | Valida credenciales del dueño/vendedor | 200 |
 | GET | `/api/clientes/{idCliente}` | Cliente | Perfil del cliente | 200 |
 | GET | `/api/productos` | Cliente | Búsqueda. Query opcionales: `texto`, `categoria`, `precioMin`, `precioMax`, `pagina` (desde 1), `tamanio` (def. 20, máx. 100) | 200 |
 | GET | `/api/productos/{id}` | Cliente | Detalle de producto activo | 200 |
@@ -190,5 +191,5 @@ Los siguientes patrones no están implementados. El estado del pedido se maneja 
 
 - **Sin autenticación por token.** El login valida credenciales pero no emite sesión ni JWT (no hay Spring Security en las dependencias); los endpoints reciben `idCliente` en el body o la ruta. Cualquier llamador podría enviar el id de otro cliente.
 - **Conexión única.** El Singleton con un lock global serializa el acceso a la BD: es correcto y seguro para transacciones, pero limita la concurrencia.
-- **Vendedor sin login.** Solo puede publicar productos indicando su `idVendedor`.
+- **Vendedor con Login Propio.** Cuenta con su propio endpoint aislado (`/api/auth/admin/login`) por seguridad.
 - **Estado del pedido fijo.** Ningún endpoint lo avanza (ver "Reglas de negocio").

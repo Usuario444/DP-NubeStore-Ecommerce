@@ -1,27 +1,27 @@
-# NubeStore Frontend
+﻿# NubeStore Frontend
 
-Frontend estático para el e-commerce universitario **NubeStore**, una tienda de moda online con diseño editorial inspirado en H&M.
+Frontend estÃ¡tico para el e-commerce universitario **NubeStore**, una tienda de moda online con diseÃ±o editorial inspirado en H&M.
 
-## Stack Tecnológico
+## Stack TecnolÃ³gico
 
-| Tecnología | Uso |
+| TecnologÃ­a | Uso |
 |---|---|
-| **HTML5** | Estructura semántica de las vistas |
-| **CSS3 Puro** | Diseño completo sin frameworks (Grid, Flexbox, Custom Properties) |
-| **JavaScript ES Modules** | Lógica del cliente con arquitectura modular |
-| **Google Fonts** | Tipografías Playfair Display + DM Sans |
+| **HTML5** | Estructura semÃ¡ntica de las vistas |
+| **CSS3 Puro** | DiseÃ±o completo sin frameworks (Grid, Flexbox, Custom Properties) |
+| **JavaScript ES Modules** | LÃ³gica del cliente con arquitectura modular |
+| **Google Fonts** | TipografÃ­as Playfair Display + DM Sans |
 
-> **Sin frameworks CSS ni librerías JS.** Todo el diseño, componentes (modales, toasts, navbar responsive) y lógica están construidos desde cero.
+> **Sin frameworks CSS ni librerÃ­as JS.** Todo el diseÃ±o, componentes (modales, toasts, navbar responsive) y lÃ³gica estÃ¡n construidos desde cero.
 
 ## Requisitos
 
-- **Backend** corriendo en `http://localhost:8080` → [nubestore-backend](../nubestore-backend)
+- **Backend** corriendo en `http://localhost:8080` â†’ [nubestore-backend](../nubestore-backend)
 - **Servidor web local** (IntelliJ IDEA integrado en `http://localhost:63342`)
 - Navegador moderno (Chrome, Firefox, Edge)
 
-> ⚠️ No abrir los HTML con doble clic (`file://`). Los ES Modules requieren un servidor HTTP.
+> âš ï¸ No abrir los HTML con doble clic (`file://`). Los ES Modules requieren un servidor HTTP.
 
-## Ejecución
+## EjecuciÃ³n
 
 1. Levantar el backend:
    ```bash
@@ -30,105 +30,106 @@ Frontend estático para el e-commerce universitario **NubeStore**, una tienda de
    ```
 
 2. Abrir el frontend en IntelliJ IDEA:
-   - Clic derecho en `index.html` → **Open In → Browser**
-   - Se abrirá en `http://localhost:63342/nubestore-fronted/index.html`
+   - Clic derecho en `index.html` â†’ **Open In â†’ Browser**
+   - Se abrirÃ¡ en `http://localhost:63342/nubestore-fronted/index.html`
 
 ## Estructura del Proyecto
 
 ```
 nubestore-fronted/
-├── index.html              # Catálogo de productos (página principal)
-├── login.html              # Inicio de sesión
-├── registro.html           # Creación de cuenta
-├── carrito.html            # Bolsa de compras + checkout
-├── pedidos.html            # Historial y seguimiento de pedidos
-├── vendedor.html           # Panel de publicación de prendas
-│
-├── css/
-│   └── style.css           # Design System completo (900+ líneas)
-│                             → Variables CSS (Light/Dark Mode)
-│                             → CSS Grid + Flexbox responsive
-│                             → Componentes: modal, toast, navbar, cards
-│                             → Animaciones y transiciones
-│
-├── js/
-│   ├── config.js           # URL base, endpoints, constantes, storage keys
-│   │
-│   ├── api/                # Capa de red (fetch wrapper)
-│   │   ├── httpClient.js   # Cliente HTTP centralizado + ApiError
-│   │   ├── authApi.js      # Login y registro
-│   │   ├── productosApi.js # CRUD de productos
-│   │   └── pedidosApi.js   # Pedidos y devoluciones
-│   │
-│   ├── state/              # Estado de la aplicación
-│   │   ├── session.js      # Sesión en localStorage (único punto de acceso)
-│   │   └── carrito.js      # Carrito en memoria + persistencia
-│   │
-│   ├── ui/                 # Componentes de interfaz
-│   │   ├── render.js       # Construcción segura del DOM (createElement)
-│   │   ├── alertas.js      # Sistema de notificaciones (toasts)
-│   │   └── formato.js      # Formateo de moneda (S/) y fechas
-│   │
-│   ├── components/
-│   │   └── navbar.js       # Navegación dinámica + toggle dark mode
-│   │
-│   └── pages/              # Controladores de vista (1 por HTML)
-│       ├── catalogo.js
-│       ├── login.js
-│       ├── registro.js
-│       ├── carrito.js
-│       ├── pedidos.js
-│       └── vendedor.js
-│
-└── assets/
-    └── logo.jpg            # Logo NubeStore
+â”œâ”€â”€ index.html              # CatÃ¡logo de productos (pÃ¡gina principal)
+â”œâ”€â”€ login.html              # Inicio de sesiÃ³n
+â”œâ”€â”€ registro.html           # CreaciÃ³n de cuenta
+â”œâ”€â”€ carrito.html            # Bolsa de compras + checkout
+â”œâ”€â”€ pedidos.html            # Historial y seguimiento de pedidos
+â”œâ”€â”€ vendedor.html           # Panel de publicaciÃ³n de prendas
+â”‚
+â”œâ”€â”€ css/
+â”‚   â””â”€â”€ style.css           # Design System completo (900+ lÃ­neas)
+â”‚                             â†’ Variables CSS (Light/Dark Mode)
+â”‚                             â†’ CSS Grid + Flexbox responsive
+â”‚                             â†’ Componentes: modal, toast, navbar, cards
+â”‚                             â†’ Animaciones y transiciones
+â”‚
+â”œâ”€â”€ js/
+â”‚   â”œâ”€â”€ config.js           # URL base, endpoints, constantes, storage keys
+â”‚   â”‚
+â”‚   â”œâ”€â”€ api/                # Capa de red (fetch wrapper)
+â”‚   â”‚   â”œâ”€â”€ httpClient.js   # Cliente HTTP centralizado + ApiError
+â”‚   â”‚   â”œâ”€â”€ authApi.js      # Login y registro
+â”‚   â”‚   â”œâ”€â”€ productosApi.js # CRUD de productos
+â”‚   â”‚   â””â”€â”€ pedidosApi.js   # Pedidos y devoluciones
+â”‚   â”‚
+â”‚   â”œâ”€â”€ state/              # Estado de la aplicaciÃ³n
+â”‚   â”‚   â”œâ”€â”€ session.js      # SesiÃ³n en localStorage (Ãºnico punto de acceso)
+â”‚   â”‚   â””â”€â”€ carrito.js      # Carrito en memoria + persistencia
+â”‚   â”‚
+â”‚   â”œâ”€â”€ ui/                 # Componentes de interfaz
+â”‚   â”‚   â”œâ”€â”€ render.js       # ConstrucciÃ³n segura del DOM (createElement)
+â”‚   â”‚   â”œâ”€â”€ alertas.js      # Sistema de notificaciones (toasts)
+â”‚   â”‚   â””â”€â”€ formato.js      # Formateo de moneda (S/) y fechas
+â”‚   â”‚
+â”‚   â”œâ”€â”€ components/
+â”‚   â”‚   â””â”€â”€ navbar.js       # NavegaciÃ³n dinÃ¡mica + toggle dark mode
+â”‚   â”‚
+â”‚   â””â”€â”€ pages/              # Controladores de vista (1 por HTML)
+â”‚       â”œâ”€â”€ catalogo.js
+â”‚       â”œâ”€â”€ login.js
+â”‚       â”œâ”€â”€ registro.js
+â”‚       â”œâ”€â”€ carrito.js
+â”‚       â”œâ”€â”€ pedidos.js
+â”‚       â””â”€â”€ vendedor.js
+â”‚
+â””â”€â”€ assets/
+    â””â”€â”€ logo.jpg            # Logo NubeStore
 ```
 
 ## Arquitectura
 
 ```
-Vista (HTML) → Controlador (pages/) → API (api/) → Backend
-                                    → Estado (state/)
-                                    → UI (ui/)
+Vista (HTML) â†’ Controlador (pages/) â†’ API (api/) â†’ Backend
+                                    â†’ Estado (state/)
+                                    â†’ UI (ui/)
 ```
 
-**Separación estricta de responsabilidades:**
-- `pages/` — Orquesta la vista. No hace `fetch` directo ni manipula `localStorage`.
-- `api/` — Única capa que hace peticiones HTTP al backend.
-- `state/` — Único acceso a `localStorage` y estado en memoria.
-- `ui/` — Renderizado seguro del DOM y notificaciones.
+**SeparaciÃ³n estricta de responsabilidades:**
+- `pages/` â€” Orquesta la vista. No hace `fetch` directo ni manipula `localStorage`.
+- `api/` â€” Ãšnica capa que hace peticiones HTTP al backend.
+- `state/` â€” Ãšnico acceso a `localStorage` y estado en memoria.
+- `ui/` â€” Renderizado seguro del DOM y notificaciones.
 
 ## Funcionalidades
 
 ### Cliente
-- Registro y login con validación
-- Catálogo con filtros (nombre, categoría, rango de precio)
-- Carrito de compras con gestión de cantidades
-- Checkout (creación de pedido transaccional)
+- Registro y login con validaciÃ³n
+- CatÃ¡logo con filtros (nombre, categorÃ­a, rango de precio)
+- Carrito de compras con gestiÃ³n de cantidades
+- Checkout (creaciÃ³n de pedido transaccional)
 - Historial de pedidos con modal de detalle
 - Solicitud de devoluciones
 
 ### Vendedor
-- Publicación de productos con categorías de ropa
+- PublicaciÃ³n de productos con categorÃ­as de ropa
 
 ### General
 - Modo Claro / Oscuro persistente
-- Diseño 100% responsive (mobile-first)
-- Navegación dinámica según rol y estado de sesión
+- DiseÃ±o 100% responsive (mobile-first)
+- NavegaciÃ³n dinÃ¡mica segÃºn rol y estado de sesiÃ³n
 
 ## Seguridad Frontend
 
-- **Prevención XSS:** Cero uso de `.innerHTML` para datos de la API. Todo el renderizado dinámico usa `document.createElement()` + `.textContent`.
-- **Manejo de errores:** Todas las peticiones pasan por `httpClient.js` que evalúa `res.ok` y lanza un `ApiError` con el mensaje exacto del backend.
+- **PrevenciÃ³n XSS:** Cero uso de `.innerHTML` para datos de la API. Todo el renderizado dinÃ¡mico usa `document.createElement()` + `.textContent`.
+- **Manejo de errores:** Todas las peticiones pasan por `httpClient.js` que evalÃºa `res.ok` y lanza un `ApiError` con el mensaje exacto del backend.
 - **Guardias de ruta:** `session.js` expone `requiereAutenticacion()` y `requiereRol()` para proteger vistas.
 
-## Conexión con el Backend
+## ConexiÃ³n con el Backend
 
 | Frontend | Backend |
 |---|---|
 | `http://localhost:63342` | `http://localhost:8080` |
-| `config.js → API_BASE_URL` | `CorsConfig.java` debe permitir el origen del frontend |
+| `config.js â†’ API_BASE_URL` | `CorsConfig.java` debe permitir el origen del frontend |
 
 ---
 
-**Proyecto Universitario — UTP 2026**
+**Proyecto Universitario â€” UTP 2026**
+
