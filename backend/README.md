@@ -31,7 +31,7 @@ API REST de e-commerce construida con JDBC puro, arquitecturas limpias y patrone
 
 ## ⚙️ Ejecutar
 
-`ash
+```bash
 # 1. Crear la base de datos
 psql -U postgres -c "CREATE DATABASE nubestore WITH ENCODING 'UTF8';"
 
@@ -40,7 +40,7 @@ psql -U postgres -d nubestore -f src/main/resources/db/schema.sql
 
 # 3. Levantar la API (http://localhost:8080)
 mvn spring-boot:run
-`
+```
 
 `schema.sql` **no** se ejecuta automáticamente: el proyecto no tiene DataSource de Spring.
 
@@ -82,7 +82,7 @@ mvn spring-boot:run
 
 ### 📖 Ejemplos
 
-`ash
+```bash
 # Registro
 curl -X POST localhost:8080/api/auth/registro -H "Content-Type: application/json" \
   -d '{"nombre":"Ana","apellido":"Ruiz","email":"ana@mail.com","password":"clave1234","telefono":"999888777","direccion":"Av. Grau 123, Ica"}'
@@ -104,7 +104,7 @@ curl "localhost:8080/api/pedidos/1?idCliente=1"
 # Devolución
 curl -X POST localhost:8080/api/pedidos/devoluciones -H "Content-Type: application/json" \
   -d '{"idCliente":1,"idDetalle":1,"cantidad":1,"motivo":"Talla incorrecta"}'
-`
+```
 
 ### ⚖️ Reglas de negocio
 
@@ -117,11 +117,11 @@ curl -X POST localhost:8080/api/pedidos/devoluciones -H "Content-Type: applicati
 
 Formato único (`ErrorResponse`):
 
-`json
+```json
 { "timestamp": "2026-XX-XXT10:15:30", "status": 409, "error": "Conflict",
   "message": "Stock insuficiente o producto no disponible: Polo de Algodón Básico",
   "path": "/api/pedidos" }
-`
+```
 
 | Código | Causa |
 |---|---|
@@ -134,7 +134,7 @@ Formato único (`ErrorResponse`):
 
 ## 📁 Estructura del proyecto
 
-`	ext
+```text
 nubestore-backend/
 ├── pom.xml
 └── src/main/
@@ -155,7 +155,7 @@ nubestore-backend/
     └── resources/
         ├── application.properties
         └── db/            data.sql, schema.sql
-`
+```
 
 ### 🏗️ Arquitectura, Patrones y Principios SOLID
 
