@@ -1,27 +1,35 @@
-# NubeStore API — Backend (Avance 1)
+# ☁️ NubeStore API — Backend (Avance 1)
 
-API REST de e-commerce. Java 21 · Spring Boot 4.1.1 (spring-boot-starter-web) · PostgreSQL · JDBC puro · Maven.
-## Características base
+<div align="center">
+  <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring_Boot-4.1.1-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" />
+</div>
+
+API REST de e-commerce construida con JDBC puro, arquitecturas limpias y patrones de diseño.
+
+## 🚀 Características base
 
 1. **JDBC puro, cero ORM.** Sin JPA, Hibernate ni Spring Data. Acceso a datos con `java.sql.*`, `PreparedStatement` en todas las consultas y mapeo manual de `ResultSet` a objetos. Las transacciones son manuales (`setAutoCommit(false)` → `commit()` / `rollback()`) en `PedidoDAOImpl.registrarPedido`, con `SELECT ... FOR UPDATE` para bloquear el stock.
 2. **Seguridad de contraseñas.** Migración estricta a **BCrypt** (`jbcrypt` de Mindrot) con factor de costo 12 (`$2a$12$`). Validación en tiempo constante. El login responde con el mismo retardo exista o no el email para mitigar ataques de enumeración.
 3. **Lógica en PostgreSQL.** `detalle_pedido.subtotal` es `GENERATED ALWAYS AS (cantidad * precio_unitario) STORED`. Foreign Keys estrictas, `CHECK` (precio, stock, cantidades, estados válidos) y `UNIQUE` (email, código de seguimiento). La devolución se registra con un `INSERT ... SELECT` atómico que valida propiedad, estado y cantidad disponible.
 
-## Alcance del Avance 1
+## 📊 Alcance del Avance 1
 
 | Actor | Cobertura | Casos de uso |
 |---|---|---|
 | Cliente | 100% | Registro/login, buscar productos, comprar (transacción pedido + detalle), seguimiento de pedidos, solicitar devoluciones |
 | Vendedor | 25% | Publicar productos |
 
-## Requisitos
+## 🛠️ Requisitos
 
 - JDK 21
 - Dependencias clave: `spring-boot-starter-web`, `org.mindrot:jbcrypt`, `org.postgresql:postgresql`.
 - Maven 3.9+
 - PostgreSQL 12+
 
-## Ejecutar
+## ⚙️ Ejecutar
 
 ```bash
 # 1. Crear la base de datos
@@ -45,7 +53,7 @@ mvn spring-boot:run
 | `nubestore.db.password` | `NUBESTORE_DB_PASSWORD` | `postgres` |
 | `nubestore.cors.allowed-origins` | — | `http://localhost:63342, http://127.0.0.1:63342` |
 
-## Cuentas semilla
+## 👥 Cuentas semilla
 
 `schema.sql` inserta:
 
@@ -55,7 +63,7 @@ mvn spring-boot:run
 | Productos `id=1..4` | Laptop Lenovo IdeaPad 3 (S/ 2499.90), Mouse Logitech (59.90), Audífonos JBL (189.00), Teclado Redragon (149.50) |
 | Clientes | Ninguno. Se crean con `POST /api/auth/registro` (contraseña mínima: 8 caracteres) |
 
-## Rutas de la API
+## 📡 Rutas de la API
 
 | Método | Ruta | Actor | Descripción | Éxito |
 |---|---|---|---|---|
@@ -72,7 +80,7 @@ mvn spring-boot:run
 | POST | `/api/pedidos/devoluciones` | Cliente | Solicita devolución de un ítem | 201 |
 | GET | `/api/pedidos/devoluciones/cliente/{idCliente}` | Cliente | Devoluciones del cliente | 200 |
 
-### Ejemplos
+### 📖 Ejemplos
 
 ```bash
 # Registro
@@ -98,14 +106,14 @@ curl -X POST localhost:8080/api/pedidos/devoluciones -H "Content-Type: applicati
   -d '{"idCliente":1,"idDetalle":1,"cantidad":1,"motivo":"Producto defectuoso"}'
 ```
 
-### Reglas de negocio
+### ⚖️ Reglas de negocio
 
 - Estado inicial del pedido: `PENDIENTE`. Estados válidos: `PENDIENTE`, `PAGADO`, `PREPARANDO`, `ENVIADO`, `ENTREGADO`, `CANCELADO`. **Ningún endpoint del Avance 1 cambia el estado.** Para probar devoluciones: `UPDATE pedido SET estado = 'ENTREGADO' WHERE id_pedido = 1;`
 - Compra: máx. 50 líneas por pedido y 100 unidades por producto; las líneas repetidas se consolidan. Si no se envía `direccionEnvio` se usa la del cliente.
 - Devolución: solo ítems de pedidos propios en estado `ENTREGADO`, y cantidad ≤ comprada − ya devuelta (las `RECHAZADA` no cuentan).
 - Código de seguimiento: `NS-yyyyMMdd-XXXXXXXX`.
 
-### Errores
+### ❌ Errores
 
 Formato único (`ErrorResponse`):
 
@@ -124,7 +132,7 @@ Formato único (`ErrorResponse`):
 | 422 | Regla de negocio (devolución no permitida) |
 | 500 | Error interno (detalle solo en el log del servidor) |
 
-## Estructura del proyecto
+## 📁 Estructura del proyecto
 
 ```
 nubestore-backend/
@@ -149,27 +157,27 @@ nubestore-backend/
         └── db/            data.sql, schema.sql
 ```
 
-### Arquitectura, Patrones y Principios SOLID
+### 🏗️ Arquitectura, Patrones y Principios SOLID
 
 Arquitectura de 3 capas estricta: **Controller → Service → DAO (interfaz) → JDBC / PostgreSQL**. Los controllers solo manejan DTOs; las reglas de negocio viven en los Services; el SQL, solo en los DAOs.
 
 **Manejo de excepciones.** Cada método de `*DAOImpl` captura `SQLException` y la traduce a `ApiException` según el `SQLState` (`23505` → 409, `23503`/`23514`/`23502` → 400, otro → 500). `GlobalExceptionHandler` (`@RestControllerAdvice`) convierte toda excepción en un `ErrorResponse` sin filtrar detalles internos.
 
-#### Patrones GoF aplicados
+#### 🎨 Patrones GoF aplicados
 
 | Patrón | Clase | Aplicación |
 |---|---|---|
 | **Singleton** | `ConexionBD` | Constructor privado y `getInstance()` con double-checked locking (`volatile`). Mantiene **una única** `Connection` a PostgreSQL y la reabre si se cierra o deja de ser válida (`getConexion()`). Expone un `ReentrantLock` (`getLock()`) que todos los DAOs adquieren en cada operación, para que una transacción nunca se mezcle con otra petición concurrente. |
 | **Factory** | `DAOFactory` | Único lugar que conoce las clases `*DAOImpl`. `getProductoDAO()`, `getPedidoDAO()` y `getClienteDAO()` devuelven las **interfaces**; los Services nunca importan una implementación concreta. |
 
-#### Patrones GRASP aplicados
+#### 🧠 Patrones GRASP aplicados
 
 | Patrón | Clases | Aplicación |
 |---|---|---|
 | **Controlador** | `AuthController`, `ClienteController`, `ProductoController`, `PedidoController` (`@RestController`) | Reciben la petición HTTP como DTO, delegan en el Service y devuelven el DTO. Sin lógica de negocio ni acceso a datos. |
 | **Experto** | `Producto`, `Pedido`, `DetallePedido` | La clase que tiene los datos hace el cálculo: `Producto.tieneStockPara(cantidad)`, `Pedido.recalcularTotal()`, `Pedido.estaEntregado()`, `DetallePedido.getSubtotal()`. |
 
-#### Principios SOLID
+#### 💎 Principios SOLID
 
 | Principio | Cómo se respeta |
 |---|---|
@@ -179,7 +187,7 @@ Arquitectura de 3 capas estricta: **Controller → Service → DAO (interfaz) �
 | **I** — Segregación de Interfaces | Interfaces DAO pequeñas por entidad (`ProductoDAO`, `PedidoDAO`, `ClienteDAO`); cada Service depende solo de las que usa (`ProductoService` solo de `ProductoDAO`). |
 | **D** — Inversión de Dependencias | Los Services dependen de abstracciones (interfaces DAO), no de clases JDBC; los Controllers dependen de los Services. Las implementaciones se obtienen vía `DAOFactory`. |
 
-#### Pendientes (no incluidos en el Avance 1)
+#### ⏳ Pendientes (no incluidos en el Avance 1)
 
 Los siguientes patrones no están implementados. El estado del pedido se maneja hoy con constantes `String` en `Pedido`.
 
@@ -187,7 +195,7 @@ Los siguientes patrones no están implementados. El estado del pedido se maneja 
 - **Observer** (`NotificadorPedido`): aviso de cambios de estado del pedido.
 - **State** (`EstadoPedido`): transiciones de estado sin condicionales encadenados.
 
-## Limitaciones conocidas
+## 🚧 Limitaciones conocidas
 
 - **Sin autenticación por token.** El login valida credenciales pero no emite sesión ni JWT (no hay Spring Security en las dependencias); los endpoints reciben `idCliente` en el body o la ruta. Cualquier llamador podría enviar el id de otro cliente.
 - **Conexión única.** El Singleton con un lock global serializa el acceso a la BD: es correcto y seguro para transacciones, pero limita la concurrencia.
