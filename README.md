@@ -55,7 +55,7 @@ Este repositorio está estructurado como un **Monorepo**, dividiendo claramente 
 - **Diseño a Medida:** Estética premium "estilo editorial" inspirada en grandes marcas.
 - **Responsive Nativo:** Layout adaptable mediante *Media Queries*, sin clases prefabricadas.
 - **Modo Oscuro:** Tema dinámico persistente gestionado por variables CSS nativas.
-- **Componentes Custom:** Modales, Toasts y menús *off-canvas* desarrollados desde cero con DOM puro.
+- **Componentes Custom:** Modales, Toasts y menús *off-canvas* desarrollados con DOM puro.
 
 ---
 
