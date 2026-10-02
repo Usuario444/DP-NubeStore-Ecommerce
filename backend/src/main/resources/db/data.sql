@@ -1,15 +1,14 @@
 -- ---------------------------------------------------------------------
--- DATOS DE PRUEBA (opcional)
+-- DATOS DE PRUEBA
 -- Los clientes se registran vía API (POST /api/auth/registro), así su
--- contraseña se guarda con el hash correcto. El vendedor de prueba usa un
--- hash ficticio porque en este avance el vendedor solo publica productos.
+-- contraseña se guarda con el hash correcto.
 -- ---------------------------------------------------------------------
 INSERT INTO vendedor (nombre_tienda, email, password_hash, telefono)
-VALUES ('TechNube Store', 'ventas@technube.pe', 'HASH_DE_PRUEBA', '999111222');
+VALUES ('NubeStore Official', 'ventas@nubestore.pe', '$2a$12$drvXQqKRojqEGljf60ckV.Ir4yhMgXCAwkcq8.0s9.1ycphzKpJG.', '999111222');
 
 INSERT INTO producto (id_vendedor, nombre, descripcion, categoria, precio, stock, imagen_url)
 VALUES
-    (1, 'Laptop Lenovo IdeaPad 3',  'Intel Core i5, 8GB RAM, 512GB SSD', 'Computo',     2499.90, 15, NULL),
-    (1, 'Mouse Inalámbrico Logitech', 'Mouse óptico 2.4GHz',             'Accesorios',    59.90, 80, NULL),
-    (1, 'Audífonos Bluetooth JBL',    'Cancelación de ruido, 30h batería', 'Audio',      189.00, 40, NULL),
-    (1, 'Teclado Mecánico Redragon',  'Switch azul, retroiluminado RGB',  'Accesorios',  149.50, 25, NULL);1, 'Teclado Mecánico Redragon',  'Switch azul, retroiluminado RGB',  'Accesorios',  149.50, 25, NULL);
+    (1, 'Polo de Algodón Básico',  'Polo 100% algodón, cuello redondo, varios colores', 'Ropa Superior', 49.90, 50, NULL),
+    (1, 'Pantalón Jean Slim Fit',  'Pantalón de mezclilla corte slim, color azul clásico', 'Ropa Inferior', 129.90, 40, NULL),
+    (1, 'Zapatillas Urban Blancas', 'Zapatillas urbanas de cuero sintético, suela de goma', 'Calzado', 199.00, 25, NULL),
+    (1, 'Casaca de Invierno Puffer', 'Casaca térmica acolchada, resistente al agua', 'Abrigos', 249.50, 15, NULL);
