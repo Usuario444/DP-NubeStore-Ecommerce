@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta el historial de tus pedidos en NubeStore.">
+    <title>NubeStore — Mis Pedidos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <header class="hero-simple">
+        <div class="container text-center">
+            <h1 class="hero-title">Mis Pedidos</h1>
+            <p class="hero-subtitle">Historial y seguimiento de tus compras</p>
+        </div>
+    </header>
+
+    <main class="container section-pad">
+        <div id="contenedor-pedidos">
+            <!-- Se llena dinámicamente con las custom order-cards -->
+        </div>
+    </main>
+
+    <!-- Modal: Detalle (Custom Pure CSS) -->
+    <div id="modal-detalle-overlay" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalle del Pedido</h2>
+                <button class="modal-close" id="btn-cerrar-modal" aria-label="Cerrar">✕</button>
+            </div>
+            <div class="modal-body" id="modal-detalle-body">
+                <!-- Contenido inyectado por JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="btn-cerrar-modal-footer">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-lg">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand">NUBESTORE</h2>
+                    <p class="footer-desc">Moda minimalista y contemporánea.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 Proyecto Universitario UTP. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/pages/pedidos.js"></script>
+</body>
+</html>

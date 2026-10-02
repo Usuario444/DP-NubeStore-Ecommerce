@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de vendedor en NubeStore. Publica y gestiona tus prendas.">
+    <title>NubeStore — Panel Vendedor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <header class="hero-simple">
+        <div class="container text-center">
+            <h1 class="hero-title">Panel Vendedor</h1>
+            <p class="hero-subtitle">Publica y gestiona tus prendas</p>
+        </div>
+    </header>
+
+    <main class="container section-pad">
+        <div class="vendor-layout">
+
+            <!-- Formulario -->
+            <div>
+                <div class="panel-card">
+                    <h2 class="panel-title">Publicar Prenda</h2>
+
+                    <form id="form-producto" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="prod-nombre" class="form-label">Nombre de la prenda</label>
+                            <input type="text" class="form-input" id="prod-nombre" placeholder="Ej: Polo básico algodón" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-input" id="prod-descripcion" placeholder="Materiales, tallas disponibles..." required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prod-precio" class="form-label">Precio (S/)</label>
+                                <input type="number" class="form-input" id="prod-precio" placeholder="0.00" min="0.01" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prod-stock" class="form-label">Stock</label>
+                                <input type="number" class="form-input" id="prod-stock" placeholder="0" min="0" step="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-categoria" class="form-label">Categoría</label>
+                            <select class="form-input" id="prod-categoria" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="Camisetas">Camisetas</option>
+                                <option value="Pantalones">Pantalones</option>
+                                <option value="Vestidos">Vestidos</option>
+                                <option value="Chaquetas">Chaquetas</option>
+                                <option value="Zapatillas">Zapatillas</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Ropa Interior">Ropa Interior</option>
+                                <option value="Deportivo">Deportivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-md">
+                            <label for="prod-imagen" class="form-label">URL de imagen</label>
+                            <input type="url" class="form-input" id="prod-imagen" placeholder="https://ejemplo.com/prenda.jpg">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="btn-publicar">
+                            Publicar Prenda
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tabla de Productos -->
+            <div>
+                <div class="panel-card">
+                    <h2 class="panel-title">Catálogo de Prendas</h2>
+                    <div id="lista-productos">
+                        <!-- Renderizado por vendedor.js -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-lg">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand">NUBESTORE</h2>
+                    <p class="footer-desc">Panel de gestión de catálogo.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 Proyecto Universitario UTP. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/pages/vendedor.js"></script>
+</body>
+</html>

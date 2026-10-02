@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NubeStore — Moda accesible para todos. Descubre las últimas tendencias en ropa y accesorios.">
+    <title>NubeStore — Moda Online</title>
+
+    <!-- Google Fonts ya importadas en el CSS, pero añadimos preconnect por performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Custom Pure CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        Envíos gratis en pedidos superiores a S/ 150.00
+    </div>
+
+    <!-- Navbar Container (Se inyecta por navbar.js) -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=80');"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Nueva Colección</h1>
+            <p class="hero-subtitle">Descubre las últimas tendencias en moda minimalista</p>
+            <a href="#catalogo" class="hero-cta">Ver Colección</a>
+        </div>
+    </header>
+
+    <main class="container section-pad" id="catalogo">
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <form id="form-filtros" class="filter-grid">
+                <div class="form-group">
+                    <label for="input-busqueda" class="form-label">Buscar Prenda</label>
+                    <input type="text" class="form-input" id="input-busqueda" placeholder="Ej: Polo de algodón...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="select-categoria" class="form-label">Categoría</label>
+                    <select class="form-input" id="select-categoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="Camisetas">Camisetas</option>
+                        <option value="Pantalones">Pantalones</option>
+                        <option value="Vestidos">Vestidos</option>
+                        <option value="Chaquetas">Chaquetas</option>
+                        <option value="Zapatillas">Zapatillas</option>
+                        <option value="Accesorios">Accesorios</option>
+                        <option value="Ropa Interior">Ropa Interior</option>
+                        <option value="Deportivo">Deportivo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="input-precio-min" class="form-label">Precio Min (S/)</label>
+                    <input type="number" class="form-input" id="input-precio-min" placeholder="0" min="0" step="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="input-precio-max" class="form-label">Precio Max (S/)</label>
+                    <input type="number" class="form-input" id="input-precio-max" placeholder="999" min="0" step="1">
+                </div>
+                
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-primary" id="btn-buscar">Filtrar</button>
+                    <button type="button" class="btn btn-outline" id="btn-limpiar-filtros" title="Limpiar">✕</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid-products mt-lg" id="productos-grid">
+            <!-- Se llena dinámicamente por catalogo.js / render.js -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand">NUBESTORE</h2>
+                    <p class="footer-desc">Moda minimalista y contemporánea. Tu tienda en la nube con estilo editorial.</p>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Categorías</h3>
+                    <div class="footer-links">
+                        <a href="#">Novedades</a>
+                        <a href="#">Ropa de Mujer</a>
+                        <a href="#">Ropa de Hombre</a>
+                        <a href="#">Accesorios</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Ayuda</h3>
+                    <div class="footer-links">
+                        <a href="#">Atención al Cliente</a>
+                        <a href="#">Envíos y Devoluciones</a>
+                        <a href="#">Guía de Tallas</a>
+                        <a href="#">Contacto</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Nosotros</h3>
+                    <div class="footer-links">
+                        <a href="#">Sobre NubeStore</a>
+                        <a href="#">Sostenibilidad</a>
+                        <a href="#">Trabaja con nosotros</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 Proyecto Universitario UTP. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contenedor para Toast Notificaciones -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="btn-scroll-top" class="scroll-top" aria-label="Volver arriba">↑</button>
+
+    <!-- Page Controller -->
+    <script type="module" src="js/pages/catalogo.js"></script>
+</body>
+</html>

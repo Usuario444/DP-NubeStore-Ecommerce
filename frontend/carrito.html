@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu bolsa de compras en NubeStore. Revisa y confirma tu pedido.">
+    <title>NubeStore — Bolsa de Compras</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="announcement-bar">
+        Pago 100% seguro y devoluciones gratuitas
+    </div>
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <header class="hero-simple">
+        <div class="container text-center">
+            <h1 class="hero-title">Bolsa de Compras</h1>
+            <p class="hero-subtitle">Revisa tus prendas antes de finalizar</p>
+        </div>
+    </header>
+
+    <main class="container section-pad">
+        <div class="cart-layout">
+
+            <!-- Tabla del Carrito -->
+            <div class="cart-items-section" id="contenedor-carrito">
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">Imagen</th>
+                                <th>Prenda</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th style="text-align: right;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-carrito">
+                            <!-- Se llena dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resumen -->
+            <div class="cart-summary-section" id="resumen-carrito">
+                <div class="cart-summary">
+                    <h2 class="cart-summary-title">Resumen del Pedido</h2>
+                    
+                    <div class="cart-summary-row">
+                        <span class="label">Artículos:</span>
+                        <span id="carrito-cantidad">0 artículos</span>
+                    </div>
+                    
+                    <div class="cart-summary-row">
+                        <span class="label">Envío:</span>
+                        <span>Gratis</span>
+                    </div>
+                    
+                    <div class="cart-summary-divider"></div>
+                    
+                    <div class="cart-summary-row" style="align-items: center;">
+                        <span class="fw-bold">Total a Pagar:</span>
+                        <span class="cart-total" id="carrito-total">S/ 0.00</span>
+                    </div>
+
+                    <div class="cart-actions">
+                        <button class="btn btn-accent btn-block" id="btn-checkout">
+                            Finalizar Compra
+                        </button>
+                        
+                        <button class="btn btn-outline btn-block" id="btn-vaciar">
+                            Vaciar Bolsa
+                        </button>
+                        
+                        <a href="index.html" class="btn btn-ghost text-center mt-md">
+                            ← Seguir comprando
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-lg">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand">NUBESTORE</h2>
+                    <p class="footer-desc">Moda minimalista y contemporánea. Tu tienda universitaria en la nube.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 Proyecto Universitario UTP. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/pages/carrito.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicia sesión en tu cuenta NubeStore.">
+    <title>NubeStore — Iniciar Sesión</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Iniciar Sesión</h1>
+                <p class="auth-subtitle">Accede a tu cuenta NubeStore</p>
+            </div>
+
+            <form id="form-login" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="login-email" class="form-label">Email</label>
+                    <input type="email" class="form-input" id="login-email" placeholder="tu.email@correo.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group mb-md">
+                    <label for="login-password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-input" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="btn-login">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <hr class="auth-divider">
+
+            <div class="auth-footer">
+                ¿No tienes cuenta? <a href="registro.html">Crear cuenta</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>

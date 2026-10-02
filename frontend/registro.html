@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea tu cuenta en NubeStore y empieza a comprar moda online.">
+    <title>NubeStore — Crear Cuenta</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Crear Cuenta</h1>
+                <p class="auth-subtitle">Únete a NubeStore</p>
+            </div>
+
+            <form id="form-registro" class="auth-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registro-nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-input" id="registro-nombre" placeholder="Juan" required autocomplete="given-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registro-apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-input" id="registro-apellido" placeholder="Pérez" required autocomplete="family-name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registro-email" class="form-label">Email</label>
+                    <input type="email" class="form-input" id="registro-email" placeholder="tu.email@correo.com" required autocomplete="email">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registro-password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-input" id="registro-password" placeholder="••••••••" required autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="registro-confirmar" class="form-label">Confirmar</label>
+                        <input type="password" class="form-input" id="registro-confirmar" placeholder="••••••••" required autocomplete="new-password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registro-telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-input" id="registro-telefono" placeholder="987 654 321" required autocomplete="tel">
+                </div>
+
+                <div class="form-group mb-md">
+                    <label for="registro-direccion" class="form-label">Dirección de envío</label>
+                    <input type="text" class="form-input" id="registro-direccion" placeholder="Av. Ejemplo 123, Lima" required autocomplete="street-address">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="btn-registro">
+                    Crear Cuenta
+                </button>
+            </form>
+
+            <hr class="auth-divider">
+
+            <div class="auth-footer">
+                ¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/pages/registro.js"></script>
+</body>
+</html>
