@@ -3,7 +3,9 @@ package com.utp.nubestore.controller;
 import com.utp.nubestore.dto.request.LoginRequest;
 import com.utp.nubestore.dto.request.RegistroClienteRequest;
 import com.utp.nubestore.dto.response.AuthResponse;
+import com.utp.nubestore.dto.response.AuthVendedorResponse;
 import com.utp.nubestore.service.ClienteService;
+import com.utp.nubestore.service.VendedorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final ClienteService clienteService;
+    private final VendedorService vendedorService;
 
-    public AuthController(ClienteService clienteService) {
+    public AuthController(ClienteService clienteService, VendedorService vendedorService) {
         this.clienteService = clienteService;
+        this.vendedorService = vendedorService;
     }
 
     /** POST /api/auth/registro -> 201 Created */
@@ -35,5 +39,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(clienteService.autenticar(request));
+    }
+
+    /** POST /api/auth/admin/login -> 200 OK */
+    @PostMapping("/admin/login")
+    public ResponseEntity<AuthVendedorResponse> adminLogin(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(vendedorService.autenticar(request));
     }
 }

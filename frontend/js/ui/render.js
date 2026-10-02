@@ -21,7 +21,9 @@ function crearImagen(src, alt, clases = []) {
     img.alt = alt;
     if (clases.length > 0) img.classList.add(...clases);
     img.onerror = () => {
-        img.src = 'https://via.placeholder.com/400x520/EEEEEE/999999?text=NubeStore';
+        img.onerror = null; // Evita loop infinito si el logo también falla
+        img.src = 'assets/logo.jpg';
+        img.classList.add('fallback-img');
     };
     return img;
 }
