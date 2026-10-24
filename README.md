@@ -65,5 +65,37 @@ Si deseas levantar el proyecto completo en tu entorno local, sigue estos pasos:
 
 1. **Clona el repositorio:**
    ```bash
-   git clone https://github.com/TuUsuario/DP-NubeStore-Ecommerce.git
+   git clone https://github.com/Usuario444/DP-NubeStore-Ecommerce.git
    cd DP-NubeStore-Ecommerce
+   ```
+
+2. **Crea la base de datos y ejecuta los scripts SQL:**
+   ```bash
+   # Crear la base de datos en PostgreSQL
+   psql -U postgres -c "CREATE DATABASE nubestore_db WITH ENCODING 'UTF8';"
+
+   # Ejecutar el esquema de tablas
+   psql -U postgres -d nubestore_db -f backend/src/main/resources/db/schema.sql
+
+   # Cargar los datos iniciales (vendedor oficial y catálogo base)
+   psql -U postgres -d nubestore_db -f backend/src/main/resources/db/data.sql
+   ```
+
+3. **Configura la contraseña de PostgreSQL (variable de entorno):**
+   ```bash
+   # En Windows PowerShell:
+   $env:NUBESTORE_DB_PASSWORD="tu_password_aqui"
+
+   # En Linux / macOS:
+   export NUBESTORE_DB_PASSWORD="tu_password_aqui"
+   ```
+
+4. **Inicia el Backend (Spring Boot):**
+   ```bash
+   cd backend
+   mvn spring-boot:run
+   ```
+   *La API REST estará escuchando en `http://localhost:8080`.*
+
+5. **Abre el Frontend:**
+   Abre el archivo `frontend/index.html` directamente en tu navegador o mediante un servidor local (como *Live Server* en VS Code o el servidor integrado de IntelliJ IDEA en el puerto `63342`).

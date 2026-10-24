@@ -33,25 +33,34 @@ API REST de e-commerce construida con JDBC puro, arquitecturas limpias y patrone
 
 ```bash
 # 1. Crear la base de datos
-psql -U postgres -c "CREATE DATABASE nubestore WITH ENCODING 'UTF8';"
+psql -U postgres -c "CREATE DATABASE nubestore_db WITH ENCODING 'UTF8';"
 
-# 2. Crear tablas y datos semilla (¡el script ejecuta DROP TABLE de las tablas existentes!)
-psql -U postgres -d nubestore -f src/main/resources/db/schema.sql
+# 2. Crear tablas (¡el script ejecuta DROP TABLE de las tablas existentes!)
+psql -U postgres -d nubestore_db -f src/main/resources/db/schema.sql
 
-# 3. Levantar la API (http://localhost:8080)
+# 3. Insertar datos semilla (vendedor oficial y catálogo inicial)
+psql -U postgres -d nubestore_db -f src/main/resources/db/data.sql
+
+# 4. Configurar variable de entorno con la contraseña de PostgreSQL
+# En PowerShell:
+$env:NUBESTORE_DB_PASSWORD="tu_password_aqui"
+# En Linux/macOS:
+export NUBESTORE_DB_PASSWORD="tu_password_aqui"
+
+# 5. Levantar la API (http://localhost:8080)
 mvn spring-boot:run
 ```
 
-`schema.sql` **no** se ejecuta automáticamente: el proyecto no tiene DataSource de Spring.
+`schema.sql` y `data.sql` **no** se ejecutan automáticamente: el proyecto no tiene DataSource de Spring.
 
-**Configuración** (`src/main/resources/application.properties`). La conexión JDBC la lee `ConexionBD`, no Spring, y se puede sobrescribir con variables de entorno:
+**Configuración** (`src/main/resources/application.properties`). La conexión JDBC la lee `ConexionBD`, no Spring, y se puede configurar mediante variables de entorno (puedes tomar como referencia `.env.example`):
 
-| Propiedad | Variable de entorno | Valor por defecto |
-|---|---|---|
-| `nubestore.db.url` | `NUBESTORE_DB_URL` | `jdbc:postgresql://localhost:5432/nubestore` |
-| `nubestore.db.username` | `NUBESTORE_DB_USER` | `postgres` |
-| `nubestore.db.password` | `NUBESTORE_DB_PASSWORD` | `postgres` |
-| `nubestore.cors.allowed-origins` | — | `http://localhost:63342, http://127.0.0.1:63342` |
+| Propiedad | Variable de entorno | Valor por defecto | Descripción |
+|---|---|---|---|
+| `nubestore.db.url` | `NUBESTORE_DB_URL` | `jdbc:postgresql://localhost:5432/nubestore_db` | URL de conexión JDBC a PostgreSQL |
+| `nubestore.db.username` | `NUBESTORE_DB_USER` | `postgres` | Usuario de base de datos |
+| `nubestore.db.password` | `NUBESTORE_DB_PASSWORD` | *(Vacío por seguridad)* | Contraseña (definir por variable de entorno) |
+| `nubestore.cors.allowed-origins` | `CORS_ORIGINS` | `http://localhost:63342, http://127.0.0.1:63342` | Orígenes permitidos para el frontend |
 
 ## 👥 Cuentas semilla
 
@@ -234,7 +243,7 @@ Arquitectura de 3 capas estricta: **Controller → Service → DAO (interfaz) �
 | Patrón | Clase | Aplicación |
 |---|---|---|
 | **Singleton** | `ConexionBD` | Constructor privado y `getInstance()` con double-checked locking (`volatile`). Mantiene **una única** `Connection` a PostgreSQL y la reabre si se cierra o deja de ser válida (`getConexion()`). Expone un `ReentrantLock` (`getLock()`) que todos los DAOs adquieren en cada operación, para que una transacción nunca se mezcle con otra petición concurrente. |
-| **Factory** | `DAOFactory` | Único lugar que conoce las clases `*DAOImpl`. `getProductoDAO()`, `getPedidoDAO()` y `getClienteDAO()` devuelven las **interfaces**; los Services nunca importan una implementación concreta. |
+| **Factory** | `DAOFactory` | Único lugar que conoce las clases `*DAOImpl`. `getProductoDAO()`, `getPedidoDAO()`, `getClienteDAO()` y `getVendedorDAO()` devuelven las **interfaces**; los Services nunca importan una implementación concreta. |
 
 #### 🧠 Patrones GRASP aplicados
 
@@ -249,8 +258,8 @@ Arquitectura de 3 capas estricta: **Controller → Service → DAO (interfaz) �
 |---|---|
 | **S** — Responsabilidad Única | Cada clase tiene un solo motivo de cambio: controllers (HTTP), services (reglas), DAOs (SQL), `Validador` (entradas), `PasswordUtil` (hash), `GlobalExceptionHandler` (errores), `ConexionBD` (conexión). |
 | **O** — Abierto/Cerrado | Se agrega una nueva persistencia implementando las interfaces DAO, sin modificar Services ni Controllers; el único cambio queda confinado a `DAOFactory`. |
-| **L** — Sustitución de Liskov | `ProductoDAOImpl`, `PedidoDAOImpl` y `ClienteDAOImpl` cumplen el contrato de sus interfaces; los Services funcionan con cualquier implementación (constructor alternativo que recibe los DAOs, útil para pruebas). |
-| **I** — Segregación de Interfaces | Interfaces DAO pequeñas por entidad (`ProductoDAO`, `PedidoDAO`, `ClienteDAO`); cada Service depende solo de las que usa (`ProductoService` solo de `ProductoDAO`). |
+| **L** — Sustitución de Liskov | `ProductoDAOImpl`, `PedidoDAOImpl`, `ClienteDAOImpl` y `VendedorDAOImpl` cumplen el contrato de sus interfaces; los Services funcionan con cualquier implementación (constructor alternativo que recibe los DAOs, útil para pruebas). |
+| **I** — Segregación de Interfaces | Interfaces DAO pequeñas por entidad (`ProductoDAO`, `PedidoDAO`, `ClienteDAO`, `VendedorDAO`); cada Service depende solo de las que usa (`ProductoService` solo de `ProductoDAO`). |
 | **D** — Inversión de Dependencias | Los Services dependen de abstracciones (interfaces DAO), no de clases JDBC; los Controllers dependen de los Services. Las implementaciones se obtienen vía `DAOFactory`. |
 
 #### ⏳ Pendientes (no incluidos en el Avance 1)
