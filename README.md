@@ -2,7 +2,7 @@
   <img src="./frontend/assets/logo.jpg" alt="NubeStore Logo" width="120" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
   
   <h1>🛍️ DP-NubeStore Ecommerce</h1>
-  <p><strong>Plataforma de comercio electrónico con diseño editorial premium y arquitectura limpia.</strong></p>
+  <p><strong>Una tienda online diseñada para ofrecer una experiencia de compra sencilla y moderna.</strong></p>
 
   <p>
     <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21" />
@@ -18,7 +18,7 @@
 
 **NubeStore** es un proyecto universitario desarrollado con un enfoque estricto en buenas prácticas de ingeniería de software. 
 
-Se optó por una arquitectura sin frameworks en el frontend (Cero Bootstrap/Tailwind) para demostrar dominio de los estándares web actuales (CSS Grid, Flexbox, Custom Properties), y un backend transaccional en Java usando **JDBC puro** (sin ORMs) para un control absoluto sobre el rendimiento y las consultas SQL.
+El frontend se desarrolló con tecnologías nativas como HTML y CSS, utilizando herramientas como Grid y Flexbox para construir una interfaz adaptable. En el backend se utilizó Java con JDBC para gestionar las conexiones a la base de datos y ejecutar consultas SQL directamente, sin recurrir a ORM.
 
 ---
 
